@@ -1,17 +1,17 @@
 var express = require('express');
-var io = require('socket.io');
+var socketIO = require('socket.io');
 
-var app = express();
-var port = process.env.PORT || 8080;
-io(app);
+const PORT = process.env.PORT || 8080;
+const server = express()
+    .use(function (req, res) {
+        res.send('<h2>Hello world from Server!</h2>');
+    })
+    .listen(PORT, function () {
+        console.log('app is running on port: ' + PORT);
+    })
+;
 
-app.get('/', function (req, res) {
-    res.send('<h2>Hello world from Server!</h2>');
-});
-
-app.listen(port, function () {
-   console.log('app is running on port: ' + port);
-});
+const io = socketIO(server);
 
 io.on('connection', function (socket) {
    console.log('Client connected');
