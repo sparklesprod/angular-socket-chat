@@ -1,5 +1,5 @@
 var express = require('express');
-var io = require('socket.io')(http);
+// var io = require('socket.io')();
 
 var app = express();
 var port = process.env.PORT || 8080;
