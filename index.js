@@ -5,11 +5,10 @@ var path = require('path');
 const PORT = process.env.PORT || 8080;
 const app = express();
 
-app.get('*', function (req, res) {
+app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname + 'dist/index.html'));
 });
 
-// const distDir = __dirname + "/dist";
 const server = express()
     .use(express.static(__dirname + 'dist'))
     .listen(PORT, function () {
