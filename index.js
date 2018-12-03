@@ -1,12 +1,13 @@
-var app = require('express')();
-var http = require('http').Server(app);
+var express = require('express');
 var io = require('socket.io')(http);
 
+var app = express();
+var port = process.env.PORT || 8080;
+
 app.get('/', function (req, res) {
-    // res.header('Access-Control-Allow-Credentials', false);
     res.send('<h2>Hello world from Server!</h2>');
 });
 
-http.listen(8080, function () {
-    console.log("listening on *:8080");
+app.listen(port, function () {
+   console.log('app is running on port: ' + port);
 });
