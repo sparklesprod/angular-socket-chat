@@ -18,31 +18,31 @@ export class WebsocketService {
   constructor() {
   }
 
-  connect(): Rx.Subject<MessageEvent> {
-    this.socket = io.connect(environment.url, this.connectionOptions);
+  // connect(): Rx.Subject<MessageEvent> {
+  //   this.socket = io.connect(environment.url, this.connectionOptions);
+  //
+  //   const observable = new Observable(_observer => {
+  //     this.socket.on('message', (data) => {
+  //       // console.log("Получение сообщений", data);
+  //       _observer.next(data);
+  //     });
+  //     return () => {
+  //       this.socket.disconnect();
+  //     };
+  //   });
+  //
+  //   const observer = {
+  //     next: (data: Object) => {
+  //       this.socket.emit('message', data);
+  //     }
+  //   };
+  //
+  //   return Rx.Subject.create(observer, observable);
+  // }
 
-    const observable = new Observable(_observer => {
-      this.socket.on('message', (data) => {
-        // console.log("Получение сообщений", data);
-        _observer.next(data);
-      });
-      return () => {
-        this.socket.disconnect();
-      };
-    });
-
-    const observer = {
-      next: (data: Object) => {
-        this.socket.emit('message', data);
-      }
-    };
-
-    return Rx.Subject.create(observer, observable);
-  }
-
-  addUser(user: any) {
-    this.socket.emit('add-user', user);
-    console.log("Отправил юзера");
-  }
+  // addUser(user: any) {
+  //   this.socket.emit('add-user', user);
+  //   console.log("Отправил юзера");
+  // }
 
 }

@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ChatService} from "./services/chat.service";
 import {NgForm} from "@angular/forms";
-import {WebsocketService} from "./services/websocket.service";
+// import {ChatService} from "./services/chat.service";
+// import {WebsocketService} from "./services/websocket.service";
 
 @Component({
   selector: 'app-root',
@@ -18,35 +18,9 @@ export class AppComponent implements OnInit {
 
   @ViewChild('form') form: NgForm;
 
-  constructor(private chatService: ChatService,
-              private wsService: WebsocketService) {}
+  constructor() {}
 
   ngOnInit() {
-    this.chatService.messages.subscribe(msg => {
-      this.addMsgToDOM(msg['text']);
-    });
-  }
-
-  sendMessage() {
-    if (this.current !== undefined && this.current !== '') {
-      this.chatService.sendMsg(this.current);
-    }
-    this.current = '';
-  }
-
-  addMsgToDOM(msg) {
-    let list = document.querySelector("#messages");
-    let li = document.createElement('li');
-    li.className = 'item';
-    li.innerText = msg;
-    list.appendChild(li);
-  }
-
-  enter() {
-    if (this.form.invalid) {
-      return;
-    }
-
-    this.wsService.addUser(this.model);
+    console.log("Ура, запустилось");
   }
 }
