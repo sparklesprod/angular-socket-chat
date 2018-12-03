@@ -3,8 +3,13 @@
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
-    "postinstall": "ng build --aot --prod",
-    "start": "node index.js"
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng ling",
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot --prod"
   },
   "private": true,
   "dependencies": {

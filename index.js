@@ -23,13 +23,13 @@ app.set('port', PORT);
 //     })
 // ;
 //
-// const io = socketIO(server);
-//
-// io.on('connection', function (socket) {
-//    console.log('Client connected');
-//
-//    // Disconnect
-//    socket.on('disconnect', function () {
-//        console.log('Client disconnected');
-//    })
-// });
+const io = socketIO(app);
+
+io.on('connection', function (socket) {
+   console.log('Client connected');
+
+   // Disconnect
+   socket.on('disconnect', function () {
+       console.log('Client disconnected');
+   })
+});
