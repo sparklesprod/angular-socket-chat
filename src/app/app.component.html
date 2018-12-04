@@ -1,19 +1,6 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<!--<ul id="messages" class="chat-list"></ul>-->
-
-<!--<input [(ngModel)]="current" (keyup.enter)="sendMessage()" placeholder="Введите сообщение">-->
-<!--<button (click)="sendMessage()">Отправить</button>-->
-
-<!--<form #form="ngForm" (ngSubmit)="enter()">-->
-  <!--<div class="field">-->
-    <!--<label for="nickname">Имя:</label>-->
-    <!--<input id="nickname" [(ngModel)]="model.username" maxlength="10" name="name" required>-->
-  <!--</div>-->
-
-  <!--<button type="submit">Войти</button>-->
-<!--</form>-->
 <header class="main-header">
-  <a>Test</a>
+  <!--<a>Test</a>-->
+  <span></span>
   <div class="online">
     <i class="fas fa-user"></i>
     <span>{{online > 0 ? online : 0}}</span>
@@ -24,10 +11,16 @@
   <div class="container">
     <!--<div class="top"></div>-->
     <div class="chat">
-      сообщения
+      <!--<span class="message you">Привет</span>-->
+      <!--<span class="message me">Привет</span>-->
+      <!--<span class="message you">Пока</span>-->
+      <!--<span class="message me">Пока</span>-->
     </div>
     <div class="write">
-      набор текста
+      <span>
+        <input #msg id="msg" class="ballon" type="text" [(ngModel)]="message" (keyup.enter)="sendMessage(msg.value)" placeholder="Введите текст">
+        <label for="msg">Сообщение</label>
+      </span>
     </div>
   </div>
 </main>

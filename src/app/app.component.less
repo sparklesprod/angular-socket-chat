@@ -28,9 +28,138 @@
 
     .container
     {
+      position: relative;
       height: 100%;
       overflow: hidden;
       background-color: #fff;
+
+      .chat
+      {
+        position: relative;
+        height: calc(~"100% - 75px");
+        padding: 20px 35px 20px;
+        border-width: 1px 0 1px 0;
+        border-style: solid;
+        border-color: #616161;
+        background-color: #ffffff;
+        color: #9a9a9a;
+        overflow-x: hidden;
+
+        .message
+        {
+          font-size: 16px;
+          position: relative;
+          display: inline-block;
+          clear: both;
+          margin-bottom: 8px;
+          padding: 13px 14px;
+          vertical-align: top;
+          border-radius: 5px;
+        }
+        & .me
+        {
+          float: left;
+          color: #fff;
+          background-color: #25b8e4;
+        }
+
+        & .you
+        {
+          float: right;
+          color: #fff;
+          background-color: #9a9a9a;
+        }
+      }
+
+      .write
+      {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 20px 30px;
+        background-color: #032429;
+
+        > span {position: relative}
+      }
+    }
+  }
+
+  //Input Style
+  .ballon
+  {
+    display: inline-block;
+    width: 100%;
+    padding: 10px 0 10px 15px;
+    font-weight: 400;
+    color: #377D6A;
+    background: #efefef;
+    border: 0;
+    border-radius: 3px;
+    outline: 0;
+    text-indent: 75px;
+    transition: all .3s ease-in-out;
+
+    &::-webkit-input-placeholder {
+      color: #efefef;
+      text-indent: 0;
+      font-weight: 300;
+    }
+
+    + label {
+        display: inline-block;
+        position: absolute;
+        //top: 8px;
+        top: 0;
+        left: 0;
+        bottom: 8px;
+        padding: 5px 15px;
+        color: #032429;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-shadow: 0 1px 0 rgba(19,74,70,0);
+        transition: all .3s ease-in-out;
+        border-radius: 3px;
+        background: rgba(122,184,147,0);
+
+        &::after
+        {
+          position: absolute;
+          content: "";
+          width: 0;
+          height: 0;
+          top: 100%;
+          left: 50%;
+          margin-left: -3px;
+          border-left: 3px solid transparent;
+          border-right: 3px solid transparent;
+          border-top: 3px solid rgba(122,184,147,0);
+          transition: all .3s ease-in-out;
+        }
+    }
+  }
+
+  .ballon:focus,
+  .ballon:active {
+    color: #377D6A;
+    text-indent: 0;
+    background: #fff;
+
+    &::-webkit-input-placeholder {
+      color: #aaa;
+    }
+
+    + label
+    {
+        height: 20px;
+        color: #fff;
+        text-shadow: 0 1px 0 rgba(19,74,70,.4);
+        background: rgba(122,184,147,1);
+        transform: translateY(-40px);
+
+        &::after {
+          border-top: 4px solid rgba(122,184,147,1);
+        }
     }
   }
 

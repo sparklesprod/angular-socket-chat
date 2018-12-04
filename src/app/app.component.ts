@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {WebsocketService} from "./services/websocket.service";
 import {OnlineEvent} from "./classes/online-event";
@@ -11,6 +11,7 @@ import {Event} from "./shared/model/event";
 })
 export class AppComponent implements OnInit {
   public online: number;
+  public message: string;
 
   @ViewChild('form') form: NgForm;
 
@@ -24,6 +25,21 @@ export class AppComponent implements OnInit {
       this.online = onlineUsers.online;
       console.log('Подключенных юзеров: ', this.online);
     })
+  }
+
+  public sendMessage(msg) {
+    this.message = msg;
+
+    if (!this.message || this.message.length <= 0) {
+      return;
+    }
+
+    console.log('Сообщение: ', this.message);
+    this.wsService.send({
+      from: 'Annonymus',
+      content: this.message
+    });
+    this.message = null;
   }
 
   private initIoConnection(): void {
