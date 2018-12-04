@@ -20,11 +20,11 @@ var clients = {};
 
 io.on('connection', function (socket) {
    console.log('Client connected');
-   // console.log('Socket', socket.id);
    io.emit('online', {type: 'online', online: io.engine.clientsCount}); /* return online users*/
 
   //Message
   socket.on('message', function (message) {
+    console.log("[Сервер]: ", message);
     io.emit('message', message);
   });
 
