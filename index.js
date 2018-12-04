@@ -20,11 +20,12 @@ var clients = {};
 
 io.on('connection', function (socket) {
    console.log('Client connected');
-   console.log('Socket', socket.id);
-   console.log('All users', io.engine.clientsCount);
+   // console.log('Socket', socket.id);
+   io.emit('online', {type: 'online', online: io.engine.clientsCount}); /* return online users*/
 
    // Disconnect
    socket.on('disconnect', function () {
        console.log('Client disconnected');
+       io.emit('online', {type: 'online', online: io.engine.clientsCount}); /* return online users*/
    })
 });

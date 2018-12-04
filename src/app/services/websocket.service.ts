@@ -9,6 +9,7 @@ export class WebsocketService {
 
   private socket$ = Rx.Observable.of(io());
   private connect$: Observable<any>;
+  private online$: Observable<any>;
 
   constructor() {
   }
@@ -18,6 +19,12 @@ export class WebsocketService {
       return Rx.Observable.fromEvent(socket, 'connect').map(() => socket);
     })
     // this.socket = io.connect();
+  }
+
+  online() {
+    return this.online$ = this.socket$.switchMap(socket => {
+      return Rx.Observable.fromEvent(socket, 'online').map(() => socket);
+    })
   }
 
   // addUser(user: any) {
