@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
+import {WebsocketService} from "./services/websocket.service";
 // import {ChatService} from "./services/chat.service";
-// import {WebsocketService} from "./services/websocket.service";
 
 @Component({
   selector: 'app-root',
@@ -18,9 +18,10 @@ export class AppComponent implements OnInit {
 
   @ViewChild('form') form: NgForm;
 
-  constructor() {}
+  constructor(private wsService: WebsocketService) {}
 
   ngOnInit() {
     console.log("Ура, запустилось");
+    this.wsService.connect();
   }
 }
