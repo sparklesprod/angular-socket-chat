@@ -4,6 +4,7 @@ import {WebsocketService} from "./services/websocket.service";
 import {OnlineEvent} from "./classes/online-event";
 import {Event} from "./shared/model/event";
 import {Message} from "./shared/model/Message";
+import {User} from "./shared/model/User";
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import {Message} from "./shared/model/Message";
   styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
+  public user: User;
   public online: number;
   public messages: Message[] = [];
   public message: string;
@@ -19,6 +21,7 @@ export class AppComponent implements OnInit {
 
   constructor(private wsService: WebsocketService)
   {
+    this.initUserModel();
     this.initIoConnection();
   }
 
@@ -38,10 +41,19 @@ export class AppComponent implements OnInit {
 
     console.log('Сообщение: ', this.message);
     this.wsService.send({
-      from: 'Annonymus',
+      from: this.user,
       content: this.message
     });
     this.message = null;
+  }
+
+  private initUserModel(): void {
+    const randomId = Math.floor(Math.random() * (1000000)) + 1;
+    this.user = {
+      id: randomId
+    };
+
+    console.log('Init User: ', this.user);
   }
 
   private initIoConnection(): void {
