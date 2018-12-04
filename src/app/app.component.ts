@@ -34,9 +34,10 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log('AfterViewInit: ', this.chatMessage);
-    this.chatMessage.changes.subscribe(elem => {
-      console.log(elem);
+    this.chatMessage.changes.subscribe(() => {
+      try {
+        document.querySelector('.chat').scrollTop = document.querySelector('.chat').scrollHeight;
+      } catch (err) {}
     })
   }
 
