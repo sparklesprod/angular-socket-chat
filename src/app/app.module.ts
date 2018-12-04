@@ -5,7 +5,7 @@ import { FormsModule } from "@angular/forms";
 
 import {AppComponent} from './app.component';
 import {WebsocketService} from "./services/websocket.service";
-// import {ChatService} from "./services/chat.service";
+import {CommonModule} from "@angular/common";
 
 
 @NgModule({
@@ -14,7 +14,8 @@ import {WebsocketService} from "./services/websocket.service";
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   providers: [WebsocketService],
   bootstrap: [AppComponent]

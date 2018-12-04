@@ -3,6 +3,7 @@ import {NgForm} from "@angular/forms";
 import {WebsocketService} from "./services/websocket.service";
 import {OnlineEvent} from "./classes/online-event";
 import {Event} from "./shared/model/event";
+import {Message} from "./shared/model/Message";
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import {Event} from "./shared/model/event";
 })
 export class AppComponent implements OnInit {
   public online: number;
+  public messages: Message[] = [];
   public message: string;
 
   @ViewChild('form') form: NgForm;
@@ -44,6 +46,10 @@ export class AppComponent implements OnInit {
 
   private initIoConnection(): void {
     this.wsService.initSocket();
+
+    this.wsService.onMessage().subscribe((message: Message) => {
+      this.messages.push(message);
+    });
 
     this.wsService.onEvent(Event.CONNECT).subscribe(() => {
       console.log('connected');

@@ -11,10 +11,7 @@
   <div class="container">
     <!--<div class="top"></div>-->
     <div class="chat">
-      <!--<span class="message you">Привет</span>-->
-      <!--<span class="message me">Привет</span>-->
-      <!--<span class="message you">Пока</span>-->
-      <!--<span class="message me">Пока</span>-->
+      <span *ngFor="let message of messages" class="message">{{message.content}}</span>
     </div>
     <div class="write">
       <span>

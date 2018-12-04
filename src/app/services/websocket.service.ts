@@ -26,6 +26,12 @@ export class WebsocketService {
     })
   }
 
+  public onMessage(): Observable<Message> {
+    return new Observable<Message>(observer => {
+      this.socket.on('message', (data: Message) => observer.next(data));
+    })
+  }
+
   public send(message: Message): void {
     this.socket.emit('message', message);
   }

@@ -24,8 +24,8 @@ io.on('connection', function (socket) {
    io.emit('online', {type: 'online', online: io.engine.clientsCount}); /* return online users*/
 
   //Message
-  socket.on('message', function (data) {
-    console.log('Test', data);
+  socket.on('message', function (message) {
+    io.emit('message', message);
   });
 
    // Disconnect
