@@ -22,9 +22,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     console.log('ngOninit()');
-    // this.wsService.connect().subscribe(() => {
-    //   console.log('New user is connection');
-    // });
+    this.wsService.connect();
 
     this.wsService.online().subscribe((data) => {
       console.log(data);
