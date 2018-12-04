@@ -21,7 +21,7 @@ var clients = {};
 io.on('connection', function (socket) {
    console.log('Client connected');
    console.log('Socket', socket.id);
-   console.log('All users', io.of('/').clients());
+   console.log('All users', io.engine.clientsCount);
 
    // Disconnect
    socket.on('disconnect', function () {
