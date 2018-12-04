@@ -18,7 +18,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   public message: string;
 
   @ViewChild('form') form: NgForm;
-  @ViewChildren('chat-message', {read: ElementRef}) chatMessage: QueryList<ElementRef>;
+  @ViewChildren('chatMsg', {read: ElementRef}) chatMessage: QueryList<ElementRef>;
 
   constructor(private wsService: WebsocketService)
   {
