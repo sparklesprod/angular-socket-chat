@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {WebsocketService} from "./services/websocket.service";
-// import {ChatService} from "./services/chat.service";
+import {OnlineEvent} from "./classes/online-event";
 
 @Component({
   selector: 'app-root',
@@ -9,23 +9,19 @@ import {WebsocketService} from "./services/websocket.service";
   styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
-  public current: string;
-  public model: {
-    username: string
-  } = {
-    username: null
-  };
+  public online: number;
 
   @ViewChild('form') form: NgForm;
 
-  constructor(private wsService: WebsocketService) {}
+  constructor(private wsService: WebsocketService)
+  {
+    this.wsService.connect();
+  }
 
   ngOnInit() {
-    console.log('ngOninit()');
-    this.wsService.connect();
-
-    this.wsService.online().subscribe((data) => {
-      console.log(data);
+    this.wsService.online().subscribe((onlineUsers: OnlineEvent) => {
+      this.online = onlineUsers.online;
+      console.log('Подключенных юзеров: ', this.online);
     })
   }
 }

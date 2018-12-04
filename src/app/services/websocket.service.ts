@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { OnlineEvent } from "../classes/online-event";
 import * as io from 'socket.io-client';
-import * as Rx from 'rxjs';
 
 @Injectable()
 export class WebsocketService {
@@ -18,9 +18,9 @@ export class WebsocketService {
     this.socket = io.connect();
   }
 
-  online(): Observable<any> {
-    return new Observable<any>(observer => {
-      this.socket.on('online', (data: any) => observer.next(data));
+  online(): Observable<OnlineEvent> {
+    return new Observable<OnlineEvent>(observer => {
+      this.socket.on('online', (onlineUsers: OnlineEvent) => observer.next(onlineUsers));
     })
   }
 
