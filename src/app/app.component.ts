@@ -21,7 +21,9 @@ export class AppComponent implements OnInit {
   constructor(private wsService: WebsocketService) {}
 
   ngOnInit() {
-    console.log("Ура, запустилось");
-    this.wsService.connect();
+    console.log('ngOninit()');
+    this.wsService.connect().subscribe(() => {
+      console.log('New user is connection');
+    });
   }
 }

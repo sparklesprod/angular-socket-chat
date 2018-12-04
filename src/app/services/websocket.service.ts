@@ -1,44 +1,23 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import * as io from 'socket.io-client';
-import * as Rx from 'rxjs/Rx';
-import ConnectOpts = SocketIOClient.ConnectOpts;
+import * as Rx from 'rxjs';
 
 @Injectable()
 export class WebsocketService {
-
-  private readonly connectionOptions: ConnectOpts = {
-    forceNew: true,
-    timeout: 10000,
-    transports: ["websocket"]
-  };
   private socket;
+
+  private socket$ = Rx.Observable.of(io());
+  private connect$: Observable<any>;
 
   constructor() {
   }
 
   connect() {
-    // this.socket = io.connect(environment.url, this.connectionOptions);
-    //
-    // const observable = new Observable(_observer => {
-    //   this.socket.on('message', (data) => {
-    //     // console.log("Получение сообщений", data);
-    //     _observer.next(data);
-    //   });
-    //   return () => {
-    //     this.socket.disconnect();
-    //   };
-    // });
-    //
-    // const observer = {
-    //   next: (data: Object) => {
-    //     this.socket.emit('message', data);
-    //   }
-    // };
-    //
-    // return Rx.Subject.create(observer, observable);
-    this.socket = io.connect();
+    return this.connect$ = this.socket$.switchMap(socket => {
+      return Rx.Observable.fromEvent(socket, 'connect').map(() => socket);
+    })
+    // this.socket = io.connect();
   }
 
   // addUser(user: any) {
