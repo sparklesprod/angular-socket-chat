@@ -38,11 +38,7 @@ export class WebsocketService {
     // };
     //
     // return Rx.Subject.create(observer, observable);
-    this.socket = io.connect(environment.url);
-
-    this.socket.on('connect', (socket) => {
-      console.log('Connect Socket: ', socket);
-    })
+    this.socket = io.connect();
   }
 
   // addUser(user: any) {
