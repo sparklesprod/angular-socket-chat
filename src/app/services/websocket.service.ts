@@ -7,26 +7,21 @@ import * as io from 'socket.io-client';
 export class WebsocketService {
   private socket;
 
-  // private socket$ = Rx.Observable.of(io());
-  // private connect$: Observable<any>;
-  // private online$: Observable<any>;
+  constructor() {}
 
-  constructor() {
-  }
-
-  connect() {
+  public initSocket(): void {
     this.socket = io.connect();
   }
 
-  online(): Observable<OnlineEvent> {
+  public online(): Observable<OnlineEvent> {
     return new Observable<OnlineEvent>(observer => {
       this.socket.on('online', (onlineUsers: OnlineEvent) => observer.next(onlineUsers));
     })
   }
 
-  // addUser(user: any) {
-  //   this.socket.emit('add-user', user);
-  //   console.log("Отправил юзера");
-  // }
-
+  public onEvent(event): Observable<any> {
+    return new Observable<any> (observer => {
+      this.socket.on(event, () => observer.next());
+    })
+  }
 }
