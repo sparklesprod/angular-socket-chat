@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {WebsocketService} from "./services/websocket.service";
 import {OnlineEvent} from "./classes/online-event";
@@ -11,13 +11,14 @@ import {User} from "./shared/model/User";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   public user: User;
   public online: number;
   public messages: Message[] = [];
   public message: string;
 
   @ViewChild('form') form: NgForm;
+  @ViewChildren('chat-message', {read: ElementRef}) chatMessage: QueryList<ElementRef>;
 
   constructor(private wsService: WebsocketService)
   {
@@ -29,6 +30,13 @@ export class AppComponent implements OnInit {
     this.wsService.online().subscribe((onlineUsers: OnlineEvent) => {
       this.online = onlineUsers.online;
       console.log('Подключенных юзеров: ', this.online);
+    })
+  }
+
+  ngAfterViewInit(): void {
+    console.log('AfterViewInit: ', this.chatMessage);
+    this.chatMessage.changes.subscribe(elem => {
+      console.log(elem);
     })
   }
 
