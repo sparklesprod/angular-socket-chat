@@ -7,23 +7,20 @@ import * as Rx from 'rxjs';
 export class WebsocketService {
   private socket;
 
-  private socket$ = Rx.Observable.of(io());
-  private connect$: Observable<any>;
-  private online$: Observable<any>;
+  // private socket$ = Rx.Observable.of(io());
+  // private connect$: Observable<any>;
+  // private online$: Observable<any>;
 
   constructor() {
   }
 
   connect() {
-    return this.connect$ = this.socket$.switchMap(socket => {
-      return Rx.Observable.fromEvent(socket, 'connect').map(() => socket);
-    })
-    // this.socket = io.connect();
+    this.socket = io.connect();
   }
 
-  online() {
-    return this.online$ = this.socket$.switchMap(socket => {
-      return Rx.Observable.fromEvent(socket, 'online').map(() => socket);
+  online(): Observable<any> {
+    return new Observable<any>(observer => {
+      this.socket.on('online', (data: any) => observer.next(data));
     })
   }
 
