@@ -29,7 +29,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.wsService.online().subscribe((onlineUsers: OnlineEvent) => {
       this.online = onlineUsers.online;
-      console.log('Подключенных юзеров: ', this.online);
+      // console.log('Подключенных юзеров: ', this.online);
     })
   }
 
@@ -48,7 +48,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    console.log('Сообщение: ', this.message);
+    // console.log('Сообщение: ', this.message);
     this.wsService.send({
       from: this.user,
       content: this.message
@@ -62,7 +62,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       id: randomId
     };
 
-    console.log('Init User: ', this.user);
+    // console.log('Init User: ', this.user);
   }
 
   private initIoConnection(): void {
