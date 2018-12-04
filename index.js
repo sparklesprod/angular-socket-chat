@@ -15,9 +15,13 @@ app.get('/*', function (req, res) {
 
 const io = socketIO(server);
 
+//Clients
+var clients = {};
+
 io.on('connection', function (socket) {
    console.log('Client connected');
    console.log('Socket', socket.id);
+   console.log('All users', io.of('/').clients());
 
    // Disconnect
    socket.on('disconnect', function () {
