@@ -1,4 +1,4 @@
 export const environment = {
-  url: '',
+  url: 'https://annon-chat.herokuapp.com/',
   production: true
 };
