@@ -27,6 +27,6 @@ export class WebsocketService {
   }
 
   public send(message: Message): void {
-    this.socket.emit(message);
+    this.socket.emit('message', message);
   }
 }
