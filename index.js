@@ -5,12 +5,14 @@ var path = require('path');
 const PORT = process.env.PORT || 8080;
 const app = express();
 
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname + 'dist/index.html'));
-});
+app.use(express.static(__dirname + '/dist'));
 
 app.listen(PORT, function () {
   console.log('app is running on port: ' + PORT);
+});
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname + '/dist/index.html'));
 });
 
 // const server = express()
