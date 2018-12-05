@@ -25,7 +25,7 @@ io.on('connection', function (socket) {
   //Message
   socket.on('message', function (message) {
     var data = Object.assign(message, {date: new Date});
-    console.log("[Сервер]: ", data);
+    // console.log("[Сервер]: ", data);
     io.emit('message', data);
   });
 

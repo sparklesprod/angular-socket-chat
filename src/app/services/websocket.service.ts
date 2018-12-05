@@ -28,7 +28,10 @@ export class WebsocketService {
 
   public onMessage(): Observable<Message> {
     return new Observable<Message>(observer => {
-      this.socket.on('message', (data: Message) => observer.next(data));
+      this.socket.on('message', (data: Message) => {
+        console.log("data типа Message", data);
+        observer.next(data);
+      });
     })
   }
 
