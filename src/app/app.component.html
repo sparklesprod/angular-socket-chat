@@ -1,5 +1,4 @@
 <header class="main-header">
-  <!--<a>Test</a>-->
   <span></span>
   <div class="online">
     <i class="fas fa-user"></i>
@@ -11,7 +10,10 @@
   <div class="container">
     <!--<div class="top"></div>-->
     <div class="chat">
-      <span #chatMsg *ngFor="let message of messages" class="message" [ngClass]="(message['from']['id'] === user['id']) ? 'you' : 'me'">{{message.content}}</span>
+      <div #chatMsg *ngFor="let message of messages" class="message" [ngClass]="(message['from']['id'] === user['id']) ? 'you' : 'me'">
+        <span>{{message.content}}</span>
+        <span>{{message.time}}</span>
+      </div>
     </div>
     <div class="write">
       <span>

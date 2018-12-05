@@ -68,7 +68,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     this.wsService.initSocket();
 
     this._connection = this.wsService.onMessage().subscribe((message: Message) => {
-      console.log('Новое сообщение: ', message);
       this.messages.push(message);
     });
 
