@@ -29,6 +29,11 @@ io.on('connection', function (socket) {
     io.emit('message', data);
   });
 
+  //User is typing
+  socket.on('typing', function (flag) {
+    console.log("[Сервер]: ", flag);
+  });
+
    // Disconnect
    socket.on('disconnect', function () {
        console.log('Client disconnected');

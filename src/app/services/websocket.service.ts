@@ -37,4 +37,8 @@ export class WebsocketService {
   public send(message: Message): void {
     this.socket.emit('message', message);
   }
+
+  public isUserTyping(typing: boolean): void {
+    this.socket.email('typing', typing);
+  }
 }

@@ -3,7 +3,8 @@ import {NgForm} from "@angular/forms";
 import {WebsocketService} from "./services/websocket.service";
 import {Message} from "./shared/model/Message";
 import {User} from "./shared/model/User";
-import {Observable} from "rxjs/Observable";
+import {Observable} from "rxjs";
+import {Subscription} from "rxjs/Subscription";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
@@ -35,9 +36,12 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   public messages: Message[] = [];
   public message: string;
 
+  private input$: Subscription;
   private _connection;
+  private _scrollSubscribtion;
 
   @ViewChild('form') form: NgForm;
+  @ViewChild('msg') textField: ElementRef;
   @ViewChildren('chatMsg', {read: ElementRef}) chatMessage: QueryList<ElementRef>;
 
   constructor(public wsService: WebsocketService)
@@ -52,10 +56,17 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy() {
     this._connection.unsubscribe();
+    this._scrollSubscribtion.unsubscribe();
+    this.input$.unsubscribe();
   }
 
   ngAfterViewInit(): void {
-    this.chatMessage.changes.subscribe(() => {
+    this.input$ = Observable.fromEvent(this.textField.nativeElement, 'input')
+      .do(() => this.wsService.isUserTyping(true))
+      .debounceTime(1000)
+      .subscribe(() => this.wsService.isUserTyping(false));
+
+    this._scrollSubscribtion = this.chatMessage.changes.subscribe(() => {
       try {
         document.querySelector('.chat').scrollTop = document.querySelector('.chat').scrollHeight;
       } catch (err) {}
