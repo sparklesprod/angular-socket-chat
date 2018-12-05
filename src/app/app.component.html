@@ -3,7 +3,7 @@
   <span></span>
   <div class="online">
     <i class="fas fa-user"></i>
-    <span>{{online > 0 ? online : 0}}</span>
+    <span>{{wsService.online() | async}}</span>
   </div>
 </header>
 

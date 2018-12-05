@@ -13,24 +13,25 @@ import {User} from "./shared/model/User";
 })
 export class AppComponent implements OnInit, AfterViewInit {
   public user: User;
-  public online: number;
+  // public online: number;
   public messages: Message[] = [];
   public message: string;
 
   @ViewChild('form') form: NgForm;
   @ViewChildren('chatMsg', {read: ElementRef}) chatMessage: QueryList<ElementRef>;
 
-  constructor(private wsService: WebsocketService)
+  constructor(public wsService: WebsocketService)
   {
     this.initUserModel();
     this.initIoConnection();
   }
 
   ngOnInit() {
-    this.wsService.online().subscribe((onlineUsers: OnlineEvent) => {
-      this.online = onlineUsers.online;
-      // console.log('Подключенных юзеров: ', this.online);
-    })
+    console.log('Подключенных юзеров: ', this.wsService.online());
+    // this.wsService.online().subscribe((onlineUsers: OnlineEvent) => {
+    //   this.online = onlineUsers.online;
+    //   // console.log('Подключенных юзеров: ', this.online);
+    // })
   }
 
   ngAfterViewInit(): void {
