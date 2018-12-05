@@ -19,7 +19,13 @@
         <span class="text">{{message.content}}</span>
         <span class="time">{{message.time}}</span>
       </div>
-      <span *ngIf="isTyping | async" class="user-typing">Кто-то набирает текст...</span>
+      <div *ngIf="isTyping | async" class="typing-pos ticontainer">
+        <div class="tiblock">
+          <div class="tidot"></div>
+          <div class="tidot"></div>
+          <div class="tidot"></div>
+        </div>
+      </div>
     </div>
     <div class="write">
       <span>
