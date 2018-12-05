@@ -24,10 +24,9 @@ io.on('connection', function (socket) {
 
   //Message
   socket.on('message', function (message) {
-    console.log("[Сервер]: ", message);
-    console.log("new Date: ", new Date);
-    console.log("new Date.getTime(): ", new Date().getTime());
-    io.emit('message', message);
+    var data = Object.assign(message, {date: new Date});
+    console.log("[Сервер]: ", data);
+    io.emit('message', data);
   });
 
    // Disconnect
