@@ -19,6 +19,7 @@
         <span class="text">{{message.content}}</span>
         <span class="time">{{message.time}}</span>
       </div>
+      <span *ngIf="isTyping | async" class="user-typing">Кто-то набирает текст...</span>
     </div>
     <div class="write">
       <span>

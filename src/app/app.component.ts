@@ -33,6 +33,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   public user: User;
   public online: Observable<number>;
+  public isTyping: Observable<boolean>;
   public messages: Message[] = [];
   public message: string;
 
@@ -50,6 +51,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     this.initIoConnection();
 
     this.online = this.wsService.online();
+    this.isTyping = this.wsService.onTyping();
   }
 
   ngOnInit() {}

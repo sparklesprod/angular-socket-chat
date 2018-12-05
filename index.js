@@ -31,7 +31,7 @@ io.on('connection', function (socket) {
 
   //User is typing
   socket.on('typing', function (flag) {
-    console.log("[Сервер]: ", flag);
+    socket.broadcast.emit('typing', flag);
   });
 
    // Disconnect

@@ -34,6 +34,12 @@ export class WebsocketService {
     })
   }
 
+  public onTyping(): Observable<boolean> {
+    return new Observable<boolean>(observer => {
+      this.socket.on('typing', (typing: boolean) => observer.next(typing));
+    })
+  }
+
   public send(message: Message): void {
     this.socket.emit('message', message);
   }
