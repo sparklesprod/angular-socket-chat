@@ -4,11 +4,20 @@ import {WebsocketService} from "./services/websocket.service";
 import {Message} from "./shared/model/Message";
 import {User} from "./shared/model/User";
 import {Observable} from "rxjs/Observable";
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less']
+  styleUrls: ['./app.component.less'],
+  animations: [
+    trigger('slide', [
+      transition(':enter', [
+        style({transform: 'translateX(-100%'}),
+        animate('1s ease-in', style({transform: 'translateX(0)'}))
+      ])
+    ])
+  ]
 })
 export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   public user: User;
