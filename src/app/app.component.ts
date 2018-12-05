@@ -4,7 +4,7 @@ import {WebsocketService} from "./services/websocket.service";
 import {Message} from "./shared/model/Message";
 import {User} from "./shared/model/User";
 import {Observable} from "rxjs/Observable";
-import {animate, style, transition, trigger} from "@angular/animations";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-root',
@@ -12,9 +12,19 @@ import {animate, style, transition, trigger} from "@angular/animations";
   styleUrls: ['./app.component.less'],
   animations: [
     trigger('slide', [
-      transition(':enter', [
-        style({transform: 'translateX(-100%'}),
-        animate('1s ease-in', style({transform: 'translateX(0)'}))
+      state('me', style({
+        transform: 'translateX(0)', opacity: 1
+      })),
+      state('you', style({
+        transform: 'translateX(0)', opacity: 1
+      })),
+      transition('* => me', [
+        style({transform: 'translateX(100%)', opacity: 0}),
+        animate('.3s ease-in')
+      ]),
+      transition('* => you', [
+        style({transform: 'translateX(-100%)', opacity: 0}),
+        animate('.3s ease-in')
       ])
     ])
   ]

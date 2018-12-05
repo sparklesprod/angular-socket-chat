@@ -14,7 +14,7 @@
            #chatMsg
            class="message"
            [ngClass]="(message['from']['id'] === user['id']) ? 'you' : 'me'"
-           [@slide]
+           [@slide]="(message['from']['id'] === user['id']) ? 'you' : 'me'"
       >
         <span class="text">{{message.content}}</span>
         <span class="time">{{message.time}}</span>
