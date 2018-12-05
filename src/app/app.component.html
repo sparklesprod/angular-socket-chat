@@ -19,12 +19,12 @@
         <span class="text">{{message.content}}</span>
         <span class="time">{{message.time}}</span>
       </div>
-      <div *ngIf="isTyping | async" class="typing-pos ticontainer">
-        <div class="tiblock">
-          <div class="tidot"></div>
-          <div class="tidot"></div>
-          <div class="tidot"></div>
-        </div>
+    </div>
+    <div *ngIf="isTyping | async" class="typing-pos ticontainer">
+      <div class="tiblock">
+        <div class="tidot"></div>
+        <div class="tidot"></div>
+        <div class="tidot"></div>
       </div>
     </div>
     <div class="write">
