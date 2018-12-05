@@ -19,11 +19,11 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
         transform: 'translateX(0)', opacity: 1
       })),
       transition('* => me', [
-        style({transform: 'translateX(100%)', opacity: 0}),
+        style({transform: 'translateX(-100%)', opacity: 0}),
         animate('.3s ease-in')
       ]),
       transition('* => you', [
-        style({transform: 'translateX(-100%)', opacity: 0}),
+        style({transform: 'translateX(100%)', opacity: 0}),
         animate('.3s ease-in')
       ])
     ])
