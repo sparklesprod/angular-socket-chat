@@ -6,7 +6,6 @@ import {User} from "./shared/model/User";
 import {Observable} from "rxjs";
 import {Subscription} from "rxjs/Subscription";
 import {animate, state, style, transition, trigger} from "@angular/animations";
-import Simplebar from 'simplebar';
 
 @Component({
   selector: 'app-root',
@@ -64,10 +63,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-
-    new Simplebar(document.querySelector('.chat'), {autoHide: true});
-
-
     this.input$ = Observable.fromEvent(this.textField.nativeElement, 'input')
       .do(() => this.wsService.isUserTyping(true))
       .debounceTime(1000)
