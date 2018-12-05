@@ -25,7 +25,8 @@ io.on('connection', function (socket) {
   //Message
   socket.on('message', function (message) {
     console.log("[Сервер]: ", message);
-    console.log("Время получения сообщения на сервере: ", Date.now());
+    console.log("new Date: ", new Date);
+    console.log("new Date.getTime(): ", new Date.getTime());
     io.emit('message', message);
   });
 
