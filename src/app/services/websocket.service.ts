@@ -14,9 +14,9 @@ export class WebsocketService {
     this.socket = io.connect();
   }
 
-  public online(): Observable<OnlineEvent> {
-    return new Observable<OnlineEvent>(observer => {
-      this.socket.on('online', (onlineUsers: OnlineEvent) => observer.next(onlineUsers));
+  public online(): Observable<number> {
+    return new Observable<number>(observer => {
+      this.socket.on('online', (onlineUsers: OnlineEvent) => observer.next(onlineUsers.online));
     })
   }
 

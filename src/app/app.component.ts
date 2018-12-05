@@ -5,6 +5,7 @@ import {OnlineEvent} from "./classes/online-event";
 import {Event} from "./shared/model/event";
 import {Message} from "./shared/model/Message";
 import {User} from "./shared/model/User";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ import {User} from "./shared/model/User";
 })
 export class AppComponent implements OnInit, AfterViewInit {
   public user: User;
-  // public online: number;
+  public online: Observable<number>;
   public messages: Message[] = [];
   public message: string;
 
@@ -27,7 +28,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    console.log('Подключенных юзеров: ', this.wsService.online());
+    this.online = this.wsService.online();
+    console.log('Подключенных юзеров: ', this.online);
     // this.wsService.online().subscribe((onlineUsers: OnlineEvent) => {
     //   this.online = onlineUsers.online;
     //   // console.log('Подключенных юзеров: ', this.online);
