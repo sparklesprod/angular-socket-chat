@@ -1,9 +1,14 @@
 var express = require('express');
 var socketIO = require('socket.io');
 var path = require('path');
+var https = require('https');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
+
+setInterval(function () {
+  https.get('https://annon-chat.herokuapp.com');
+}, 3300000);
 
 const server = express()
     .use(express.static(__dirname + '/dist'))
